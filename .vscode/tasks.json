@@ -3,9 +3,9 @@
         {
             "type": "process",
             "label": "Run Executable - RelWithDebInfo",
-            "command": "generated/build/bin/RelWithDebInfo/${workspaceFolderBasename}.exe",
+            "command": "${workspaceFolder}/generated/build/bin/RelWithDebInfo/${workspaceFolderBasename}.exe",
             "linux": {
-                "command": "generated/build/bin/RelWithDebInfo/${workspaceFolderBasename}"
+                "command": "${workspaceFolder}/generated/build/bin/RelWithDebInfo/${workspaceFolderBasename}"
             },
             "options": {
                 "cwd": "${workspaceFolder}"
@@ -17,9 +17,9 @@
         {
             "type": "process",
             "label": "Run cvtest - RelWithDebInfo",
-            "command": "generated/build/bin/RelWithDebInfo/cvtest.exe",
+            "command": "${workspaceFolder}/generated/build/bin/RelWithDebInfo/cvtest.exe",
             "linux": {
-                "command": "generated/build/bin/RelWithDebInfo/cvtest"
+                "command": "${workspaceFolder}/generated/build/bin/RelWithDebInfo/cvtest"
             },
             "options": {
                 "cwd": "${workspaceFolder}/assets"

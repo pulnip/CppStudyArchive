@@ -6,7 +6,7 @@ using namespace std;
 using namespace cv;
 
 int cvtest::hellocv(){
-    Mat mat=imread("assets/lenna.png", IMREAD_COLOR);
+    Mat mat=imread("Lena.png", IMREAD_COLOR);
     namedWindow("cvtest", WINDOW_AUTOSIZE);
     imshow("cvtest", mat);
 
