@@ -3,9 +3,9 @@
         {
             "type": "process",
             "label": "Run Executable - RelWithDebInfo",
-            "command": "generated/build/bin/RelWithDebInfo/CMakeTemplate.exe",
+            "command": "generated/build/bin/RelWithDebInfo/${workspaceFolderBasename}.exe",
             "linux": {
-                "command": "generated/build/bin/RelWithDebInfo/CMakeTemplate"
+                "command": "generated/build/bin/RelWithDebInfo/${workspaceFolderBasename}"
             },
             "options": {
                 "cwd": "${workspaceFolder}"

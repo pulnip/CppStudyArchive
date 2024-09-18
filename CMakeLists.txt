@@ -1,6 +1,8 @@
 cmake_minimum_required (VERSION 3.28)
 
-project(CMakeTemplate
+cmake_path(GET CMAKE_SOURCE_DIR FILENAME ProjectName)   
+string(REPLACE " " "_" ProjectId ${ProjectName})
+project(${ProjectName}
     LANGUAGES C CXX
 )
 
