@@ -2,8 +2,8 @@
 
 using namespace cvtest;
 
-int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[]){
-    hellocv();
+int main(void){
+    drawline();
 
     return 0;
 }

@@ -8,4 +8,6 @@ namespace cvtest{
     extern int practice();
     extern int videoio();
     extern int videoio2();
+
+    extern int drawline();
 }
