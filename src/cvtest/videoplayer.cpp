@@ -10,11 +10,10 @@ using namespace cv;
 static bool clicked=false;
 static int startX, startY, currX, currY;
 
-static Mat curr;
-static Mat tmp;
-
 static vector<Mat> video;
 static int videoPtr=0;
+static Mat tmp;
+
 
 static void onMouse(int evt, int x, int y, int flags, void* param){
     switch(evt){
@@ -24,7 +23,7 @@ static void onMouse(int evt, int x, int y, int flags, void* param){
         break;
     case EVENT_LBUTTONUP:
         clicked=false;
-        video[videoPtr]=curr=tmp;
+        video[videoPtr]=tmp;
         break;
     case EVENT_MOUSEMOVE:
         currX=x; currY=y;
@@ -53,12 +52,12 @@ static void loadVideo(const string& fileName){
 
 static void setNextFrame(){
     videoPtr=min<int>(videoPtr+1, video.size()-1);
-    imshow("Video Player", curr=video[videoPtr]);
+    imshow("Video Player", video[videoPtr]);
 }
 
 static void setPrevFrame(){
     videoPtr=max<int>(videoPtr-1, 0);
-    imshow("Video Player", curr=video[videoPtr]);
+    imshow("Video Player", video[videoPtr]);
 }
 
 int cvtest::videoplayer(){
@@ -66,8 +65,8 @@ int cvtest::videoplayer(){
     if(video.empty())
         return 0;
 
-    imshow("Video Player", curr=video[videoPtr]);
-    setMouseCallback("Video Player", onMouse, &curr);
+    imshow("Video Player", video[videoPtr]);
+    setMouseCallback("Video Player", onMouse, &video[videoPtr]);
 
     bool active=true;
     bool keyup=true;
@@ -101,7 +100,7 @@ int cvtest::videoplayer(){
             setNextFrame();
         }
         else if(clicked){
-            tmp=curr.clone();
+            tmp=video[videoPtr].clone();
             line(tmp, Point(startX, startY), Point(currX, currY),
                 Scalar(255, 255, 255), 5);
             imshow("Video Player", tmp);
