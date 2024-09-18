@@ -1,0 +1,203 @@
+{
+    "version": 6,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 28
+    },
+    "configurePresets": [
+        {
+            "name": "x64",
+            "hidden": true,
+            "architecture": {
+                "value": "x64",
+                "strategy": "external"
+            },
+            "toolset": {
+                "value": "host=x64",
+                "strategy": "external"
+            }
+        },
+        {
+            "name": "MinGW-w64",
+            "hidden": true,
+            "environment": {
+                "DEV_SYS_ROOT": "$env{MSYS_ROOT}/mingw64",
+                "EXE_EXTENSION": ".exe"
+            }
+        },
+        {
+            "name": "Linux",
+            "hidden": true,
+            "environment": {
+                "DEV_SYS_ROOT": "/usr",
+                "EXE_EXTENSION": ""
+            }
+        },
+        {
+            "name": "Ninja",
+            "hidden": true,
+            "generator": "Ninja Multi-Config",
+            "cacheVariables": {
+                "CMAKE_MAKE_PROGRAM": "$env{DEV_SYS_ROOT}/bin/ninja$env{EXE_EXTENSION}"
+            }
+        },
+        {
+            "name": "VCPKG",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_TOOLCHAIN_FILE": {
+                    "value": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+                    "type": "FILEPATH"
+                },
+                "VCPKG_INSTALLED_DIR": {
+                    "value": "${sourceDir}/generated/vcpkg_installed",
+                    "type": "FILEPATH"
+                },
+                "VCPKG_TARGET_TRIPLET": "x64-mingw-dynamic",
+                "VCPKG_HOST_TRIPLET": "x64-mingw-dynamic"
+            }
+        },
+        {
+            "name": "GNUC",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "$env{DEV_SYS_ROOT}/bin/gcc$env{EXE_EXTENSION}",
+                "CMAKE_CXX_COMPILER": "$env{DEV_SYS_ROOT}/bin/g++$env{EXE_EXTENSION}"
+            }
+        },
+        {
+            "name": "Clang",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "$env{DEV_SYS_ROOT}/bin/clang$env{EXE_EXTENSION}",
+                "CMAKE_CXX_COMPILER": "$env{DEV_SYS_ROOT}/bin/clang++$env{EXE_EXTENSION}",
+                "CMAKE_CXX_FLAGS": "-fuse-ld=lld"
+            }
+        },
+        {
+            "name": "x64-base",
+            "hidden": true,
+            "inherits": [
+                "x64",
+                "Ninja",
+                "VCPKG",
+                "Clang"
+            ],
+            "environment": {
+                "PROJECT_BUILD_DIR": "${sourceDir}/generated/build"
+            },
+            "binaryDir": "$env{PROJECT_BUILD_DIR}",
+            "cacheVariables": {
+                "DEV_SYS_INCLUDE": "$env{DEV_SYS_ROOT}/include",
+                "CMAKE_ARCHIVE_OUTPUT_DIRECTORY": "$env{PROJECT_BUILD_DIR}/lib",
+                "CMAKE_LIBRARY_OUTPUT_DIRECTORY": "$env{PROJECT_BUILD_DIR}/lib",
+                "CMAKE_RUNTIME_OUTPUT_DIRECTORY": "$env{PROJECT_BUILD_DIR}/bin",
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/install/${presetName}"
+            }
+        },
+        {
+            "name": "MinGW-Clang",
+            "inherits": [
+                "x64-base",
+                "MinGW-w64",
+                "Clang"
+            ],
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Windows"
+            }
+        },
+        {
+            "name": "Linux-Clang",
+            "inherits": [
+                "x64-base",
+                "Linux",
+                "Clang"
+            ],
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Linux"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "MinGW-base",
+            "hidden": true,
+            "configurePreset": "MinGW-Clang"
+        },
+        {
+            "name": "MinGW-Debug",
+            "inherits": "MinGW-base",
+            "configuration": "Debug"
+        },
+        {
+            "name": "MinGW-Release",
+            "inherits": "MinGW-base",
+            "configuration": "RelWithDebInfo"
+        },
+        {
+            "name": "Linux-base",
+            "hidden": true,
+            "configurePreset": "Linux-Clang"
+        },
+        {
+            "name": "Linux-Debug",
+            "inherits": "Linux-base",
+            "configuration": "Debug"
+        },
+        {
+            "name": "Linux-Release",
+            "inherits": "Linux-base",
+            "configuration": "RelWithDebInfo"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "MinGW-base",
+            "hidden": true,
+            "configurePreset": "MinGW-Clang",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "timeout": 10,
+                "stopOnFailure": true
+            }
+        },
+        {
+            "name": "MinGW-Debug",
+            "inherits": "MinGW-base",
+            "configuration": "Debug"
+        },
+        {
+            "name": "MinGW-Release",
+            "inherits": "MinGW-base",
+            "configuration": "RelWithDebInfo"
+        },
+        {
+            "name": "Linux-base",
+            "hidden": true,
+            "configurePreset": "Linux-Clang",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "timeout": 10,
+                "stopOnFailure": true
+            }
+        },
+        {
+            "name": "Linux-Debug",
+            "inherits": "Linux-base",
+            "configuration": "Debug"
+        },
+        {
+            "name": "Linux-Release",
+            "inherits": "Linux-base",
+            "configuration": "RelWithDebInfo"
+        }
+    ]
+}
