@@ -2,6 +2,7 @@
 #include <vector>
 #include <opencv2/highgui.hpp>
 #include <opencv2/opencv.hpp>
+#include "cvtestfwd.hpp"
 
 using namespace std;
 using namespace cv;
@@ -9,7 +10,7 @@ using namespace cv;
 bool clicked=false;
 int startX, startY, currX, currY;
 
-void onMouse2(int evt, int x, int y, int flags, void* param){
+static void onMouse(int evt, int x, int y, int flags, void* param){
     switch(evt){
         case EVENT_LBUTTONDOWN:
             clicked=true;
@@ -24,10 +25,10 @@ void onMouse2(int evt, int x, int y, int flags, void* param){
     }
 }
 
-int main(void){
+int cvtest::practice(){
     Mat src=imread("Lena.png");
     imshow("screen", src);
-    setMouseCallback("screen", onMouse2, &src);
+    setMouseCallback("screen", onMouse, &src);
 
     // while(true){
         if(clicked){

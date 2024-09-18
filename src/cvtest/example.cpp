@@ -7,10 +7,12 @@
 // #include <opencv2/cv.h>
 #include <opencv2/opencv.hpp>
 
+#include "cvtestfwd.hpp"
+
 using namespace cv;
 using namespace std;
 
-int main2(){
+int cvtest::example(){
 	Mat img_in=imread("Lena_256x256.png");
 	cvtColor(img_in, img_in, COLOR_RGB2GRAY);
 	imshow("source img", img_in);
