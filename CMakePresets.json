@@ -42,22 +42,6 @@
             }
         },
         {
-            "name": "VCPKG",
-            "hidden": true,
-            "cacheVariables": {
-                "CMAKE_TOOLCHAIN_FILE": {
-                    "value": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
-                    "type": "FILEPATH"
-                },
-                "VCPKG_INSTALLED_DIR": {
-                    "value": "${sourceDir}/generated/vcpkg_installed",
-                    "type": "FILEPATH"
-                },
-                "VCPKG_TARGET_TRIPLET": "x64-mingw-dynamic",
-                "VCPKG_HOST_TRIPLET": "x64-mingw-dynamic"
-            }
-        },
-        {
             "name": "GNUC",
             "hidden": true,
             "cacheVariables": {
@@ -80,7 +64,6 @@
             "inherits": [
                 "x64",
                 "Ninja",
-                "VCPKG",
                 "Clang"
             ],
             "environment": {

@@ -2,16 +2,12 @@
     "env": {
         "DEV_SYS_ROOT": "${MSYS_ROOT}/mingw64",
         "DEV_SYS_INCLUDE": "${DEV_SYS_ROOT}/include",
-        "DEV_SYS_BIN": "${DEV_SYS_ROOT}/bin",
-        "VCPKG_INSTALLED": "${workspaceFolder}/generated/vcpkg_installed",
-        "VCPKG_TRIPLET": "x64-mingw-dynamic",
-        "VCPKG_TRIPLET_ROOT": "${VCPKG_INSTALLED}/${VCPKG_TRIPLET}"
+        "DEV_SYS_BIN": "${DEV_SYS_ROOT}/bin"
     },
     "configurations": [
         {
             "name": "Win32",
             "includePath": [
-                "${VCPKG_TRIPLET_ROOT}/include",
                 "${workspaceFolder}/include"
             ],
             "defines": [
@@ -28,7 +24,6 @@
         {
             "name": "Linux",
             "includePath": [
-                "${VCPKG_TRIPLET_ROOT}/include",
                 "${workspaceFolder}/include"
             ],
             "defines": [
