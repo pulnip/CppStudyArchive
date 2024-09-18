@@ -10,4 +10,5 @@ namespace cvtest{
     extern int videoio2();
 
     extern int drawline();
+    extern int videoplayer();
 }

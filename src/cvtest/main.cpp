@@ -3,7 +3,5 @@
 using namespace cvtest;
 
 int main(void){
-    drawline();
-
-    return 0;
+    return videoplayer();
 }
