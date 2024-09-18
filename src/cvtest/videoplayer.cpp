@@ -102,7 +102,7 @@ int cvtest::videoplayer(){
         else if(clicked){
             tmp=video[videoPtr].clone();
             line(tmp, Point(startX, startY), Point(currX, currY),
-                Scalar(255, 255, 255), 5);
+                Scalar(255, 0, 0), 5);
             imshow("Video Player", tmp);
         }
     }
