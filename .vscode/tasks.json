@@ -22,7 +22,7 @@
                 "command": "generated/build/bin/RelWithDebInfo/cvtest"
             },
             "options": {
-                "cwd": "${workspaceFolder}"
+                "cwd": "${workspaceFolder}/assets"
             },
             "problemMatcher": [],
             "group": "none",

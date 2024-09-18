@@ -8,6 +8,7 @@
         {
             "name": "Win32",
             "includePath": [
+                "${DEV_SYS_INCLUDE}/opencv4",
                 "${workspaceFolder}/include"
             ],
             "defines": [
