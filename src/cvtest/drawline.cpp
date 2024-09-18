@@ -1,8 +1,6 @@
-#include <iostream>
 #include <opencv2/opencv.hpp>
 #include "cvtestfwd.hpp"
 
-using namespace std;
 using namespace cv;
 
 static bool clicked=false;
