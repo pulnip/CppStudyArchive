@@ -1,10 +1,14 @@
 # Archive of my `C/C++` studies and assignments.
 
-## Content
-
 This repository contains code samples, project files, and notes that reflect my learning journey.
 
 Feel free to use it, but nothing is guaranteed.
+
+
+## Content
+
+- DataStructure
+- cvtest: my OpenCV Test Project using mSYS and CMake
 
 
 ## License
