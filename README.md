@@ -1,16 +1,10 @@
-# A Template to build *CMake* based project
+# Archive of my `C/C++` studies and assignments.
 
 ## Content
 
-This repository contains template of [CMake](https://www.cmake.org) based project.
+This repository contains code samples, project files, and notes that reflect my learning journey.
 
-And the project leverages [vcpkg](https://github.com/microsoft/vcpkg) and [CMake's CMakePresets.json](https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html) to build and test `C/C++` source code.
-
-
-## Prerequisite
-
-- set `MSYS_ROOT` at your system variable. (ex. `C:/msys64`)
-- or set `MSYS_ROOT` at [c_cpp_properties.json](.vscode/c_cpp_properties.json) and [CMakePresets.json](CMakePresets.json) manually.
+Feel free to use it, but nothing is guaranteed.
 
 
 ## License
