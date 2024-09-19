@@ -2,7 +2,6 @@
 #include <vector>
 #include <opencv2/highgui.hpp>
 #include <opencv2/opencv.hpp>
-#include "cvtestfwd.hpp"
 
 using namespace std;
 using namespace cv;
@@ -25,7 +24,7 @@ static void onMouse(int evt, int x, int y, int flags, void* param){
     }
 }
 
-int cvtest::practice(){
+int main(void){
     Mat src=imread("Lena.png");
     imshow("screen", src);
     setMouseCallback("screen", onMouse, &src);
@@ -40,6 +39,5 @@ int cvtest::practice(){
     // }
 
     waitKey(0);
-
     return 0;
 }

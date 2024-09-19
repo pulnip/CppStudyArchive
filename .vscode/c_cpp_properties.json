@@ -1,14 +1,9 @@
 {
-    "env": {
-        "DEV_SYS_ROOT": "${MSYS_ROOT}/mingw64",
-        "DEV_SYS_INCLUDE": "${DEV_SYS_ROOT}/include",
-        "DEV_SYS_BIN": "${DEV_SYS_ROOT}/bin"
-    },
     "configurations": [
         {
             "name": "Win32",
             "includePath": [
-                "${DEV_SYS_INCLUDE}/opencv4",
+                "${config:DEV_SYS_INCLUDE}/opencv4",
                 "${workspaceFolder}/include"
             ],
             "defines": [
@@ -19,7 +14,7 @@
             "cStandard": "c23",
             "cppStandard": "c++23",
             "intelliSenseMode": "windows-clang-x64",
-            "compilerPath": "${DEV_SYS_BIN}/clang++.exe",
+            "compilerPath": "${config:DEV_SYS_BIN}/clang++.exe",
             "configurationProvider": "ms-vscode.cmake-tools"
         },
         {

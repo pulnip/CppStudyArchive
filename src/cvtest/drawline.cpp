@@ -1,5 +1,4 @@
 #include <opencv2/opencv.hpp>
-#include "cvtestfwd.hpp"
 
 using namespace cv;
 
@@ -25,7 +24,7 @@ static void onMouse(int evt, int x, int y, int flags, void* param){
     }
 }
 
-int cvtest::drawline(){
+int main(void){
     src=imread("Lena.png");
     imshow("screen", src);
     setMouseCallback("screen", onMouse, &src);

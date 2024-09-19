@@ -1,5 +1,4 @@
 #include <opencv2/opencv.hpp>
-#include "cvtestfwd.hpp"
 
 using namespace cv;
 
@@ -105,7 +104,7 @@ static Mat subtract(const Mat& src, const Mat& sub){
     return dst;
 }
 
-int cvtest::transform(){
+int main(void){
     Mat src=imread("Lena.png");
     myshow(src);
 

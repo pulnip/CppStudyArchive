@@ -1,12 +1,11 @@
 #include <iostream>
 #include <vector>
 #include <opencv2/opencv.hpp>
-#include "cvtestfwd.hpp"
 
 using namespace std;
 using namespace cv;
 
-int cvtest::draw(){
+int main(void){
     VideoCapture capture("testVideo.mp4");
     if(!capture.isOpened()){
         puts("cannot open Video file.");

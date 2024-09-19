@@ -1,18 +1,12 @@
-// PSNR.cpp : 콘솔 응용 프로그램에 대한 진입점을 정의합니다.
-//
 #include <print>
 #include <cmath>
 
-// #include <opencv2/cvv.hpp>
-// #include <opencv2/cv.h>
 #include <opencv2/opencv.hpp>
 
-#include "cvtestfwd.hpp"
-
-using namespace cv;
 using namespace std;
+using namespace cv;
 
-int cvtest::example(){
+int main(void){
 	Mat img_in=imread("Lena_256x256.png");
 	cvtColor(img_in, img_in, COLOR_RGB2GRAY);
 	imshow("source img", img_in);
@@ -38,6 +32,5 @@ int cvtest::example(){
 	imshow("output image", img_out);
 
 	waitKey(0);
-
 	return 0;
 }

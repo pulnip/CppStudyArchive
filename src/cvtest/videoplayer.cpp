@@ -2,7 +2,6 @@
 #include <string>
 #include <vector>
 #include <opencv2/opencv.hpp>
-#include "cvtestfwd.hpp"
 
 using namespace std;
 using namespace cv;
@@ -13,7 +12,6 @@ static int startX, startY, currX, currY;
 static vector<Mat> video;
 static int videoPtr=0;
 static Mat tmp;
-
 
 static void onMouse(int evt, int x, int y, int flags, void* param){
     switch(evt){
@@ -60,7 +58,7 @@ static void setPrevFrame(){
     imshow("Video Player", video[videoPtr]);
 }
 
-int cvtest::videoplayer(){
+int main(void){
     loadVideo("testVideo.mp4");
     if(video.empty())
         return 0;

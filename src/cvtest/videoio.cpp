@@ -1,12 +1,11 @@
 #include <iostream>
 #include <vector>
 #include <opencv2/opencv.hpp>
-#include "cvtestfwd.hpp"
 
 using namespace std;
 using namespace cv;
 
-int cvtest::videoio(){
+int main1(void){
     VideoCapture capture("testVideo.mp4");
     Mat frame;
 
@@ -31,7 +30,7 @@ int cvtest::videoio(){
     return 0;
 }
 
-int cvtest::videoio2(){
+int main2(void){
     VideoCapture capture("testVideo.mp4");
     if(!capture.isOpened()){
         puts("cannot open Video file.");
@@ -53,7 +52,6 @@ int cvtest::videoio2(){
 
         Mat frame_s;
         resize(frame, frame_s, Size(640, 360));
-
 
         video.push_back(frame_s);
     }
