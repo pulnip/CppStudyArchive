@@ -129,21 +129,17 @@ int main(void){
 	Mat source=imread("Lena_256x256.png", IMREAD_GRAYSCALE);
     matshow(source);
 
-    const int x_newsize=542, y_newsize=542;
+    Mat resizeTo436=resize(source, 436, 436, bilinear);
+    matshow(resizeTo436);
+    Mat resizeTo512=resize(source, 512, 512, bilinear);
+    matshow(resizeTo512);
 
-    Mat resized_replicate=resize(source, x_newsize, y_newsize, replicate);
-    matshow(resized_replicate);
-    Mat resized_nearest=resize(source, x_newsize, y_newsize, nearest);
-    matshow(resized_nearest);
-    Mat resized_bilinear=resize(source, x_newsize, y_newsize, bilinear);
-    matshow(resized_bilinear);
-
-    // Mat rotated30=rotate(source, 30, bilinear);
-    // matshow(rotated30);
-    // Mat rotated45=rotate(source, 45, bilinear);
-    // matshow(rotated45);
-    // Mat rotated60=rotate(source, 60, bilinear);
-    // matshow(rotated60);
+    Mat rotated30=rotate(source, 30, bilinear);
+    matshow(rotated30);
+    Mat rotated45=rotate(source, 45, bilinear);
+    matshow(rotated45);
+    Mat rotated60=rotate(source, 60, bilinear);
+    matshow(rotated60);
 
 	waitKey(0);
 	return 0;
