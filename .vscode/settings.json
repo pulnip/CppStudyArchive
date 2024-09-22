@@ -89,5 +89,7 @@
         "valarray": "cpp",
         "variant": "cpp",
         "assert.h": "c"
-    }
+    },
+    "print.filepathInDocumentTitle": "No path",
+    "print.filepathHeadingForIndividuallyPrintedDocuments": false
 }
