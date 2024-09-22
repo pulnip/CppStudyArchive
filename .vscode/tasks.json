@@ -2,10 +2,10 @@
     "tasks": [
         {
             "type": "process",
-            "label": "Run Main Project!",
-            "command": "${config:MAIN_PROJECT_BIN}/RelWithDebInfo/${workspaceFolderBasename}.exe",
+            "label": "Run Project!",
+            "command": "${config:MAIN_PROJECT_BIN}/RelWithDebInfo/${fileDirnameBasename}.exe",
             "linux": {
-                "command": "${config:MAIN_PROJECT_BIN}/RelWithDebInfo/${workspaceFolderBasename}"
+                "command": "${config:MAIN_PROJECT_BIN}/RelWithDebInfo/${fileDirnameBasename}"
             },
             "options": {
                 "cwd": "${workspaceFolder}"

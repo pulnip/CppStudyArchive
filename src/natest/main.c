@@ -9,7 +9,7 @@ double f2p1(double x){ return 1 + LN3*pow(3, -x); }
 
 int main(void){
     LN3=log(3);
-    newton(f2, f2p1, 0, 1, 0.00005, 20);
+    bisection(f1, 1, 2, 0.0005, 20);
 
     return 0;
 }

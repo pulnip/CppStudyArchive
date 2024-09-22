@@ -21,7 +21,7 @@ void bisection(double(*f)(double), double a, double b,
         if((fabs(b-a) < TOL) || (fp == 0))
             break;
 
-        printf("% 2d|% 16.10lf|% 16.10lf|% 16.10lf|% 16.10lf\n", i, a, b, p, fp);
+        printf("%2d|%16.10lf|%16.10lf|%16.10lf|%16.10lf\n", i, a, b, p, fp);
 
         if(fp < 0){
             if(inc) a=p;
@@ -48,7 +48,7 @@ void secant(double(*f)(double), double p0, double p1,
         double fp0=f(p0), fp1=f(p1);
         double p=(p0*fp1 - p1*fp0)/(fp1-fp0);
         double fp=f(p);
-        printf("% 2d|% 16.10lf|% 16.10lf\n", i, p, fp);
+        printf("%2d|%16.10lf|%16.10lf\n", i, p, fp);
 
         if(fp == 0)
             break;
@@ -70,8 +70,9 @@ void newton(double(*fp0)(double), double(*fp1)(double),
         double p=p0 - fp0(p0)/fp1(p0);
         double e=fabs(p-p0);
 
-        printf("% 2d|% 16.10lf|% 16.10lf\n", i, p, e);
+        printf("%2d|%16.10lf|%16.10lf\n", i, p, e);
         if(e < TOL)
+        
             break;
 
         p0=p;
