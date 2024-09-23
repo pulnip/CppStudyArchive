@@ -63,6 +63,34 @@ namespace interpolation{
             const float weight_y1x0=len_y1*len_x0;
             const float weight_y1x1=len_y1*len_x1;
 
+            return weight_y1x1*y0x0 + weight_y1x0*y0x1 +
+                weight_y0x1*y1x0 + weight_y0x0*y1x1;
+        }
+
+        inline uint8_t bilinear_wrong(const Mat& src, const float x, const float y){
+            if(isMatOutside(src, x, y))
+                return BLACK;
+
+            const int x0=max(static_cast<int>(x), 0);
+            const int x1=min(static_cast<int>(x0+1), src.cols-1);
+            const int y0=max(static_cast<int>(y), 0);
+            const int y1=min(static_cast<int>(y0+1), src.rows-1);
+
+            const uint8_t y0x0=src.data[src.cols*y0 + x0];
+            const uint8_t y0x1=src.data[src.cols*y0 + x1];
+            const uint8_t y1x0=src.data[src.cols*y1 + x0];
+            const uint8_t y1x1=src.data[src.cols*y1 + x1];
+
+            const float len_x0=x-x0;
+            const float len_x1=1-len_x0;
+            const float len_y0=y-y0;
+            const float len_y1=1-len_y0;
+
+            const float weight_y0x0=len_y0*len_x0;
+            const float weight_y0x1=len_y0*len_x1;
+            const float weight_y1x0=len_y1*len_x0;
+            const float weight_y1x1=len_y1*len_x1;
+
             return weight_y0x0*y0x0 + weight_y0x1*y0x1 +
                 weight_y1x0*y1x0 + weight_y1x1*y1x1;
         }
@@ -110,8 +138,8 @@ namespace transform{
                 for(int j=0; j<dst.cols; ++j){
                     const float x_dst=j-mid_x;
 
-                    const float x_origin=cos_d*x_dst - sin_d*y_dst + mid_x;
-                    const float y_origin=sin_d*x_dst + cos_d*y_dst + mid_y;
+                    const float x_origin =  cos_d*x_dst + sin_d*y_dst + mid_x;
+                    const float y_origin = -sin_d*x_dst + cos_d*y_dst + mid_y;
 
                     dst.data[index + j]=interpolate(src, x_origin, y_origin);
                 }
@@ -129,10 +157,17 @@ int main(void){
 	Mat source=imread("Lena_256x256.png", IMREAD_GRAYSCALE);
     matshow(source);
 
-    Mat resizeTo436=resize(source, 436, 436, bilinear);
-    matshow(resizeTo436);
-    Mat resizeTo512=resize(source, 512, 512, bilinear);
-    matshow(resizeTo512);
+    Mat Lena_436x436_replicate=resize(source, 436, 436, replicate);
+    matshow(Lena_436x436_replicate);
+    Mat Lena_436x436_nearest=resize(source, 436, 436, nearest);
+    matshow(Lena_436x436_nearest);
+    Mat Lena_436x436=resize(source, 436, 436, bilinear);
+    matshow(Lena_436x436);
+
+    Mat Lena_512x512=resize(source, 512, 512, bilinear);
+    matshow(Lena_512x512);
+    Mat Lena_512x512_wrong=resize(source, 512, 512, bilinear_wrong);
+    matshow(Lena_512x512_wrong);
 
     Mat rotated30=rotate(source, 30, bilinear);
     matshow(rotated30);
