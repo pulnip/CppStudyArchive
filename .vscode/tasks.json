@@ -25,6 +25,7 @@
                 "-I${config:DEV_SYS_INCLUDE}/opencv4",
                 "-I${config:WORKSPACE_INCLUDE}",
                 "-lstdc++exp",
+                "-lgdi32",
                 "-lopencv_core", "-lopencv_imgcodecs", "-lopencv_imgproc",
                 "-lopencv_video", "-lopencv_videoio", "-lopencv_highgui",
                 "-o", "${config:CVTEST_BIN}/${fileBasenameNoExtension}.exe"
