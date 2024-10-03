@@ -35,6 +35,7 @@
             "command": "clang++.exe",
             "args": [
                 "-fdiagnostics-color=always", "-g", "${file}",
+                "-std=c++23",
                 "-O2", "-DNDEBUG", "-Wall",
                 "-I${config:DEV_SYS_INCLUDE}/opencv4",
                 "-I${config:WORKSPACE_INCLUDE}",
