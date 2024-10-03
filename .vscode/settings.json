@@ -89,7 +89,8 @@
         "valarray": "cpp",
         "variant": "cpp",
         "assert.h": "c",
-        "*.inc": "cpp"
+        "*.inc": "cpp",
+        "root_finding.h": "c"
     },
     "print.filepathInDocumentTitle": "No path",
     "print.filepathHeadingForIndividuallyPrintedDocuments": false

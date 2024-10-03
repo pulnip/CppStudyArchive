@@ -1,5 +1,3 @@
-#include <algorithm>
-#include <print>
 #include <opencv2/opencv.hpp>
 
 using namespace std;
@@ -12,9 +10,8 @@ inline Mat getHistogram(const Mat& src){
     Mat dst(256, 256, CV_8UC1);
 
     int freq[256]={0, };
-    for(int i=0; i<src.rows*src.cols; ++i){
+    for(int i=0; i<src.rows*src.cols; ++i)
         ++freq[src.data[i]];
-    }
 
     int max_freq=freq[0], min_freq=freq[0];
     for(int i=1; i<256; ++i){
@@ -26,13 +23,12 @@ inline Mat getHistogram(const Mat& src){
 
     for(int x=0; x<256; ++x){
         int y=255 * (static_cast<float>(freq[x]-min_freq)/(max_freq-min_freq));
-        println("{}", y);
 
         for(int i=0; i<y; ++i){
-            dst.data[256*y+x] = 0xff;
+            dst.at<uint8_t>(255-i, x)=0xff;
         }
         for(int i=y; i<256; ++i){
-            dst.data[256*y+x] = 0x00;
+            dst.at<uint8_t>(255-i, x)=0x00;
         }
     }
 
@@ -50,6 +46,5 @@ int main(void){
 	return 0;
 }
 
-#undef _USE_MATH_DEFINES
 #undef nameof
 #undef matshow
