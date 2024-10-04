@@ -7,8 +7,8 @@ Feel free to use it, but nothing is guaranteed.
 
 ## Content
 
-- DataStructure
-- cvtest: my OpenCV Test Project using mSYS and CMake
+- main branch for commons
+- other branchs for specific topics
 
 
 ## License
