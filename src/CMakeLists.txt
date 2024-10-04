@@ -27,5 +27,3 @@ if(WIN32)
         UNICODE
     )
 endif()
-
-add_subdirectory(natest)
