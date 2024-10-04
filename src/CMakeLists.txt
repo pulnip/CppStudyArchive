@@ -21,11 +21,16 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     stdc++exp
 )
 
+find_package(OpenCV REQUIRED)
+if(OpenCV_FOUND)
+    target_link_libraries(${PROJECT_NAME} PRIVATE
+        ${OpenCV_LIBS}
+    )
+endif()
+
 if(WIN32)
     target_compile_definitions(${PROJECT_NAME} PRIVATE
         _UNICODE
         UNICODE
     )
 endif()
-
-add_subdirectory(natest)

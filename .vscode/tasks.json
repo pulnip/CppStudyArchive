@@ -3,12 +3,9 @@
         {
             "type": "process",
             "label": "Run Project! (Release)",
-            "command": "${config:MAIN_PROJECT_BIN}/RelWithDebInfo/${fileDirnameBasename}.exe",
-            "linux": {
-                "command": "${config:MAIN_PROJECT_BIN}/RelWithDebInfo/${fileDirnameBasename}"
-            },
+            "command": "${config:MAIN_PROJECT_BIN}/RelWithDebInfo/CppStudyArchive.exe",
             "options": {
-                "cwd": "${workspaceFolder}"
+                "cwd": "${workspaceFolder}/assets"
             },
             "problemMatcher": [],
             "group": "none",
@@ -17,12 +14,9 @@
         {
             "type": "process",
             "label": "Run Project! (Debug)",
-            "command": "${config:MAIN_PROJECT_BIN}/Debug/${fileDirnameBasename}.exe",
-            "linux": {
-                "command": "${config:MAIN_PROJECT_BIN}/Debug/${fileDirnameBasename}"
-            },
+            "command": "${config:MAIN_PROJECT_BIN}/Debug/CppStudyArchive.exe",
             "options": {
-                "cwd": "${workspaceFolder}"
+                "cwd": "${workspaceFolder}/assets"
             },
             "problemMatcher": [],
             "group": "none",

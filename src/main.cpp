@@ -1,11 +1,13 @@
 #include <exception>
 #include <print>
+#include "fwd.hpp"
 
 using namespace std;
+using namespace cvtest;
 
 int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[]){
     try{
-        println("Hello, World!");
+        drawLine();
     }
     catch(const exception& e){
         println("{}", e.what());
