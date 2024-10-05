@@ -23,6 +23,10 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
 
 find_package(OpenCV REQUIRED)
 if(OpenCV_FOUND)
+    message(STATUS "Using OpenCV package")
+    target_include_directories(${PROJECT_NAME} PRIVATE
+        "${DEV_SYS_INCLUDE}/opencv4"
+    )
     target_link_libraries(${PROJECT_NAME} PRIVATE
         ${OpenCV_LIBS}
     )

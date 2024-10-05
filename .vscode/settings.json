@@ -90,7 +90,9 @@
         "variant": "cpp",
         "assert.h": "c",
         "*.inc": "cpp",
-        "root_finding.h": "c"
+        "root_finding.h": "c",
+        "csetjmp": "cpp",
+        "cfenv": "cpp"
     },
     "print.filepathInDocumentTitle": "No path",
     "print.filepathHeadingForIndividuallyPrintedDocuments": false

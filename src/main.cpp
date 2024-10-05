@@ -7,7 +7,8 @@ using namespace cvtest;
 
 int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[]){
     try{
-        drawLine();
+        // drawLine();
+        simple_videoplayer();
     }
     catch(const exception& e){
         println("{}", e.what());

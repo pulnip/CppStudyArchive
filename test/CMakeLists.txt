@@ -24,3 +24,13 @@ if(GTest_FOUND)
     include(GoogleTest)
     add_test(NAME ${PROJECT_NAME}-Test COMMAND Test)
 endif()
+
+find_package(OpenCV REQUIRED)
+if(OpenCV_FOUND)
+    target_include_directories(Test PRIVATE
+        "${DEV_SYS_INCLUDE}/opencv4"
+    )
+    target_link_libraries(Test PRIVATE
+        ${OpenCV_LIBS}
+    )
+endif()
