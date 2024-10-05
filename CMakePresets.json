@@ -2,7 +2,7 @@
     "version": 6,
     "cmakeMinimumRequired": {
         "major": 3,
-        "minor": 28
+        "minor": 20
     },
     "configurePresets": [
         {
@@ -18,44 +18,11 @@
             }
         },
         {
-            "name": "MinGW-w64",
-            "hidden": true,
-            "environment": {
-                "DEV_SYS_ROOT": "$env{MSYS_ROOT}/mingw64",
-                "EXE_EXTENSION": ".exe"
-            }
-        },
-        {
-            "name": "Linux",
-            "hidden": true,
-            "environment": {
-                "DEV_SYS_ROOT": "/usr",
-                "EXE_EXTENSION": ""
-            }
-        },
-        {
             "name": "Ninja",
             "hidden": true,
             "generator": "Ninja Multi-Config",
             "cacheVariables": {
-                "CMAKE_MAKE_PROGRAM": "$env{DEV_SYS_ROOT}/bin/ninja$env{EXE_EXTENSION}"
-            }
-        },
-        {
-            "name": "GNUC",
-            "hidden": true,
-            "cacheVariables": {
-                "CMAKE_C_COMPILER": "$env{DEV_SYS_ROOT}/bin/gcc$env{EXE_EXTENSION}",
-                "CMAKE_CXX_COMPILER": "$env{DEV_SYS_ROOT}/bin/g++$env{EXE_EXTENSION}"
-            }
-        },
-        {
-            "name": "Clang",
-            "hidden": true,
-            "cacheVariables": {
-                "CMAKE_C_COMPILER": "$env{DEV_SYS_ROOT}/bin/clang$env{EXE_EXTENSION}",
-                "CMAKE_CXX_COMPILER": "$env{DEV_SYS_ROOT}/bin/clang++$env{EXE_EXTENSION}",
-                "CMAKE_CXX_FLAGS": "-fuse-ld=lld"
+                "CMAKE_MAKE_PROGRAM": "ninja"
             }
         },
         {
@@ -63,126 +30,107 @@
             "hidden": true,
             "inherits": [
                 "x64",
-                "Ninja",
-                "Clang"
+                "Ninja"
             ],
-            "environment": {
-                "PROJECT_BUILD_ROOT": "${sourceDir}/generated/build"
-            },
-            "binaryDir": "$env{PROJECT_BUILD_ROOT}",
+            "binaryDir": "${sourceDir}/generated/build",
             "cacheVariables": {
-                "DEV_SYS_INCLUDE": "$env{DEV_SYS_ROOT}/include",
                 "CMAKE_CXX_STANDARD": "23",
                 "CMAKE_CXX_STANDARD_REQUIRED": "ON",
                 "CMAKE_CXX_EXTENSIONS": "OFF",
-                "CMAKE_ARCHIVE_OUTPUT_DIRECTORY": "$env{PROJECT_BUILD_ROOT}/lib",
-                "CMAKE_LIBRARY_OUTPUT_DIRECTORY": "$env{PROJECT_BUILD_ROOT}/lib",
-                "CMAKE_RUNTIME_OUTPUT_DIRECTORY": "$env{PROJECT_BUILD_ROOT}/bin",
                 "CMAKE_INSTALL_PREFIX": "${sourceDir}/install/${presetName}"
             }
         },
         {
-            "name": "MinGW-Clang",
-            "inherits": [
-                "x64-base",
-                "MinGW-w64",
-                "Clang"
-            ],
-            "condition": {
-                "type": "equals",
-                "lhs": "${hostSystemName}",
-                "rhs": "Windows"
+            "name": "GNUC",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "gcc",
+                "CMAKE_CXX_COMPILER": "g++"
             }
         },
         {
-            "name": "Linux-Clang",
+            "name": "Clang",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "clang",
+                "CMAKE_CXX_COMPILER": "clang++",
+                "CMAKE_CXX_FLAGS": "-fuse-ld=lld"
+            }
+        },
+        {
+            "name": "MSVC",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "cl",
+                "CMAKE_CXX_COMPILER": "cl"
+            }
+        },
+        {
+            "name": "x64-GNUC",
             "inherits": [
                 "x64-base",
-                "Linux",
+                "GNUC"
+            ]
+        },
+        {
+            "name": "x64-Clang",
+            "inherits": [
+                "x64-base",
                 "Clang"
-            ],
-            "condition": {
-                "type": "equals",
-                "lhs": "${hostSystemName}",
-                "rhs": "Linux"
-            }
+            ]
+        },
+        {
+            "name": "x64-MSVC",
+            "inherits": [
+                "x64-base",
+                "MSVC"
+            ]
         }
     ],
     "buildPresets": [
         {
-            "name": "MinGW-base",
+            "name": "base-GNUC",
             "hidden": true,
-            "configurePreset": "MinGW-Clang"
+            "configurePreset": "x64-GNUC"
         },
         {
-            "name": "MinGW-Debug",
-            "inherits": "MinGW-base",
+            "name": "Debug(GNUC)",
+            "inherits": "base-GNUC",
             "configuration": "Debug"
         },
         {
-            "name": "MinGW-Release",
-            "inherits": "MinGW-base",
+            "name": "Release(GNUC)",
+            "inherits": "base-GNUC",
             "configuration": "RelWithDebInfo"
         },
         {
-            "name": "Linux-base",
+            "name": "base-Clang",
             "hidden": true,
-            "configurePreset": "Linux-Clang"
+            "configurePreset": "x64-Clang"
         },
         {
-            "name": "Linux-Debug",
-            "inherits": "Linux-base",
+            "name": "Debug(Clang)",
+            "inherits": "base-Clang",
             "configuration": "Debug"
         },
         {
-            "name": "Linux-Release",
-            "inherits": "Linux-base",
-            "configuration": "RelWithDebInfo"
-        }
-    ],
-    "testPresets": [
-        {
-            "name": "MinGW-base",
-            "hidden": true,
-            "configurePreset": "MinGW-Clang",
-            "output": {
-                "outputOnFailure": true
-            },
-            "execution": {
-                "timeout": 10,
-                "stopOnFailure": true
-            }
-        },
-        {
-            "name": "MinGW-Debug",
-            "inherits": "MinGW-base",
-            "configuration": "Debug"
-        },
-        {
-            "name": "MinGW-Release",
-            "inherits": "MinGW-base",
+            "name": "Release(Clang)",
+            "inherits": "base-Clang",
             "configuration": "RelWithDebInfo"
         },
         {
-            "name": "Linux-base",
+            "name": "base-MSVC",
             "hidden": true,
-            "configurePreset": "Linux-Clang",
-            "output": {
-                "outputOnFailure": true
-            },
-            "execution": {
-                "timeout": 10,
-                "stopOnFailure": true
-            }
+            "configurePreset": "x64-MSVC"
         },
         {
-            "name": "Linux-Debug",
-            "inherits": "Linux-base",
+            "name": "Debug(MSVC)",
+            "inherits": "base-MSVC",
             "configuration": "Debug"
         },
         {
-            "name": "Linux-Release",
-            "inherits": "Linux-base",
+            "name": "Release(MSVC)",
+            "inherits": "base-MSVC",
             "configuration": "RelWithDebInfo"
         }
     ]
