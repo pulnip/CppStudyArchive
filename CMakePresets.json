@@ -32,12 +32,18 @@
                 "x64",
                 "Ninja"
             ],
-            "binaryDir": "${sourceDir}/generated/build",
+            "environment": {
+                "PROJECT_BUILD_ROOT": "${sourceDir}/generated/build"
+            },
+            "binaryDir": "$env{PROJECT_BUILD_ROOT}",
             "cacheVariables": {
                 "CMAKE_CXX_STANDARD": "23",
                 "CMAKE_CXX_STANDARD_REQUIRED": "ON",
                 "CMAKE_CXX_EXTENSIONS": "OFF",
-                "CMAKE_INSTALL_PREFIX": "${sourceDir}/install/${presetName}"
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/install/${presetName}",
+                "CMAKE_ARCHIVE_OUTPUT_DIRECTORY": "$env{PROJECT_BUILD_ROOT}/lib",
+                "CMAKE_LIBRARY_OUTPUT_DIRECTORY": "$env{PROJECT_BUILD_ROOT}/lib",
+                "CMAKE_RUNTIME_OUTPUT_DIRECTORY": "$env{PROJECT_BUILD_ROOT}/bin"
             }
         },
         {
