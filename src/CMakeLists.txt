@@ -1,7 +1,8 @@
-file(GLOB MAIN_SRC "*.cpp")
+file(GLOB C_SRC "*.c")
+file(GLOB CPP_SRC "*.cpp")
 
 add_executable(${PROJECT_NAME}
-    ${MAIN_SRC}
+    ${C_SRC} ${CPP_SRC}
 )
 
 target_compile_definitions(${PROJECT_NAME} PUBLIC
@@ -11,6 +12,10 @@ target_compile_definitions(${PROJECT_NAME} PUBLIC
 target_include_directories(${PROJECT_NAME} PRIVATE
     "${CMAKE_SOURCE_DIR}/include"
     "${DEV_SYS_INCLUDE}"
+)
+
+target_compile_definitions(${PROJECT_NAME} PRIVATE
+    SHOW_INTERNAL_PROCESS
 )
 
 target_compile_options(${PROJECT_NAME} PRIVATE
