@@ -21,7 +21,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt update
-        sudo apt install cmake ninja-build g++ libgtest-dev
+        sudo apt install cmake ninja-build g++-14 libgtest-dev
 
     - name: CMake workflow
       run: cmake --workflow --preset "Linux-GNUC"
