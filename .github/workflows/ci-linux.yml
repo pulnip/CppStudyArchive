@@ -1,4 +1,4 @@
-name: CI using CMake
+name: CI to Linux using CMake
 
 on:
   push:

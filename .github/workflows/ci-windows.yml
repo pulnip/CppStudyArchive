@@ -1,4 +1,4 @@
-name: CI using CMake
+name: CI to Windows using CMake
 
 on:
   push:
@@ -25,7 +25,6 @@ jobs:
       with:
         location: C:/
         msystem: ${{ matrix.sys }}
-        update: true
         pacboy:
           ninja
           gtest
