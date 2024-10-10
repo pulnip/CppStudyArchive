@@ -25,5 +25,8 @@ jobs:
     - name: Checkout Project
       uses: actions/checkout@v4
 
-    - name: CMake workflow
+    - name: Echo
+      run: gcm ninja
+
+    - name: CMake workflow        
       run: cmake --workflow --preset "GNUC"
