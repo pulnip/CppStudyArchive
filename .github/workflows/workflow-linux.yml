@@ -1,0 +1,27 @@
+name: CI using CMake
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+
+    steps:
+    - name: Checkout Project
+      uses: actions/checkout@v4
+
+    - name: Install dependencies
+      run: |
+        sudo apt update
+        sudo apt install cmake ninja-build g++ 
+
+    - name: CMake workflow
+      run: cmake --workflow --preset "Linux-GNUC"
