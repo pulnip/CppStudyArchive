@@ -15,24 +15,27 @@ jobs:
       fail-fast: false
 
       matrix:
+        os: [windows-latest, ubuntu-latest]
         sys:
           - mingw64
 
     steps:
-    - uses: msys2/setup-msys2@v2
+    - name: Install dependencies for Windows
+      if: matrix.os == 'windows-latest'
+      uses: msys2/setup-msys2@v2
       with:
         msystem: ${{ matrix.sys }}
-        cache: true
         update: true
         pacboy:
-          cmake
-          ninja
-          gcc
+
+    - name: Install dependencies for Linux
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        sudo apt update
+        sudo apt install cmake ninja-build g++ libgtest-dev
 
     - name: Checkout Project
       uses: actions/checkout@v4
 
     - name: CMake workflow
-      env:
-        MSYS_ROOT: '${{ steps.msys2.outputs.msys2-location }}'
-      run: cmake --workflow --preset "MinGW-GNUC"
+      run: cmake --workflow --preset "x64-workflow"

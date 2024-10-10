@@ -18,48 +18,12 @@
             }
         },
         {
-            "name": "MinGW-w64",
-            "hidden": true,
-            "environment": {
-                "DEV_SYS_ROOT": "$env{MSYS_ROOT}/mingw64",
-                "EXE_EXTENSION": ".exe"
-            }
-        },
-        {
-            "name": "Linux",
-            "hidden": true,
-            "environment": {
-                "DEV_SYS_ROOT": "/usr",
-                "EXE_EXTENSION": ""
-            }
-        },
-        {
             "name": "Ninja",
             "hidden": true,
-            "generator": "Ninja Multi-Config",
-            "cacheVariables": {
-                "CMAKE_MAKE_PROGRAM": "$env{DEV_SYS_ROOT}/bin/ninja$env{EXE_EXTENSION}"
-            }
-        },
-        {
-            "name": "GNUC",
-            "hidden": true,
-            "cacheVariables": {
-                "CMAKE_C_COMPILER": "$env{DEV_SYS_ROOT}/bin/gcc$env{EXE_EXTENSION}",
-                "CMAKE_CXX_COMPILER": "$env{DEV_SYS_ROOT}/bin/g++$env{EXE_EXTENSION}"
-            }
-        },
-        {
-            "name": "Clang",
-            "hidden": true,
-            "cacheVariables": {
-                "CMAKE_C_COMPILER": "$env{DEV_SYS_ROOT}/bin/clang$env{EXE_EXTENSION}",
-                "CMAKE_CXX_COMPILER": "$env{DEV_SYS_ROOT}/bin/clang++$env{EXE_EXTENSION}"
-            }
+            "generator": "Ninja Multi-Config"
         },
         {
             "name": "x64-base",
-            "hidden": true,
             "inherits": [
                 "x64",
                 "Ninja"
@@ -69,7 +33,6 @@
             },
             "binaryDir": "$env{PROJECT_BUILD_ROOT}",
             "cacheVariables": {
-                "DEV_SYS_INCLUDE": "$env{DEV_SYS_ROOT}/include",
                 "CMAKE_CXX_STANDARD": "23",
                 "CMAKE_CXX_STANDARD_REQUIRED": "ON",
                 "CMAKE_CXX_EXTENSIONS": "OFF",
@@ -78,116 +41,24 @@
                 "CMAKE_RUNTIME_OUTPUT_DIRECTORY": "$env{PROJECT_BUILD_ROOT}/bin",
                 "CMAKE_INSTALL_PREFIX": "${sourceDir}/install/${presetName}"
             }
-        },
-        {
-            "name": "MinGW-GNUC",
-            "inherits": [
-                "x64-base",
-                "MinGW-w64",
-                "GNUC"
-            ],
-            "condition": {
-                "type": "equals",
-                "lhs": "${hostSystemName}",
-                "rhs": "Windows"
-            }
-        },
-        {
-            "name": "MinGW-Clang",
-            "inherits": [
-                "x64-base",
-                "MinGW-w64",
-                "Clang"
-            ],
-            "condition": {
-                "type": "equals",
-                "lhs": "${hostSystemName}",
-                "rhs": "Windows"
-            }
-        },
-        {
-            "name": "Linux-GNUC",
-            "inherits": [
-                "x64-base",
-                "Linux",
-                "GNUC"
-            ],
-            "condition": {
-                "type": "equals",
-                "lhs": "${hostSystemName}",
-                "rhs": "Linux"
-            }
-        },
-        {
-            "name": "Linux-Clang",
-            "inherits": [
-                "x64-base",
-                "Linux",
-                "Clang"
-            ],
-            "condition": {
-                "type": "equals",
-                "lhs": "${hostSystemName}",
-                "rhs": "Linux"
-            }
         }
     ],
     "buildPresets": [
         {
-            "name": "Debug",
-            "hidden": true,
+            "name": "x64-Debug",
+            "configurePreset": "x64-base",
             "configuration": "Debug"
         },
         {
-            "name": "Release",
-            "hidden": true,
+            "name": "x64-Release",
+            "configurePreset": "x64-base",
             "configuration": "RelWithDebInfo"
-        },
-        {
-            "name": "MinGW-GNUC-Debug",
-            "inherits": "Debug",
-            "configurePreset": "MinGW-GNUC"
-        },
-        {
-            "name": "MinGW-GNUC-Release",
-            "inherits": "Release",
-            "configurePreset": "MinGW-GNUC"
-        },
-        {
-            "name": "MinGW-Clang-Debug",
-            "inherits": "Debug",
-            "configurePreset": "MinGW-Clang"
-        },
-        {
-            "name": "MinGW-Clang-Release",
-            "inherits": "Release",
-            "configurePreset": "MinGW-Clang"
-        },
-        {
-            "name": "Linux-GNUC-Debug",
-            "inherits": "Debug",
-            "configurePreset": "Linux-GNUC"
-        },
-        {
-            "name": "Linux-GNUC-Release",
-            "inherits": "Release",
-            "configurePreset": "Linux-GNUC"
-        },
-        {
-            "name": "Linux-Clang-Debug",
-            "inherits": "Debug",
-            "configurePreset": "Linux-Clang"
-        },
-        {
-            "name": "Linux-Clang-Release",
-            "inherits": "Release",
-            "configurePreset": "Linux-Clang"
         }
     ],
     "testPresets": [
         {
-            "name": "base",
-            "hidden": true,
+            "name": "test-base",
+            "configurePreset": "x64-base",
             "configuration": "RelWithDebInfo",
             "output": {
                 "outputOnFailure": true
@@ -196,94 +67,23 @@
                 "timeout": 100,
                 "stopOnFailure": true
             }
-        },
-        {
-            "name": "MinGW-GNUC",
-            "inherits": "base",
-            "configurePreset": "MinGW-GNUC"
-        },
-        {
-            "name": "MinGW-Clang",
-            "inherits": "base",
-            "configurePreset": "MinGW-Clang"
-        },
-        {
-            "name": "Linux-GNUC",
-            "inherits": "base",
-            "configurePreset": "Linux-GNUC"
-        },
-        {
-            "name": "Linux-Clang",
-            "inherits": "base",
-            "configurePreset": "Linux-Clang"
         }
     ],
     "workflowPresets": [
         {
-            "name": "MinGW-GNUC",
+            "name": "x64-workflow",
             "steps": [
                 {
                     "type": "configure",
-                    "name": "MinGW-GNUC"
+                    "name": "x64-base"
                 },
                 {
                     "type": "build",
-                    "name": "MinGW-GNUC-Release"
+                    "name": "x64-Release"
                 },
                 {
                     "type": "test",
-                    "name": "MinGW-GNUC"
-                }
-            ]
-        },
-        {
-            "name": "MinGW-Clang",
-            "steps": [
-                {
-                    "type": "configure",
-                    "name": "MinGW-Clang"
-                },
-                {
-                    "type": "build",
-                    "name": "MinGW-Clang-Release"
-                },
-                {
-                    "type": "test",
-                    "name": "MinGW-Clang"
-                }
-            ]
-        },
-        {
-            "name": "Linux-GNUC",
-            "steps": [
-                {
-                    "type": "configure",
-                    "name": "Linux-GNUC"
-                },
-                {
-                    "type": "build",
-                    "name": "Linux-GNUC-Release"
-                },
-                {
-                    "type": "test",
-                    "name": "Linux-GNUC"
-                }
-            ]
-        },
-        {
-            "name": "Linux-Clang",
-            "steps": [
-                {
-                    "type": "configure",
-                    "name": "Linux-Clang"
-                },
-                {
-                    "type": "build",
-                    "name": "Linux-Clang-Release"
-                },
-                {
-                    "type": "test",
-                    "name": "Linux-Clang"
+                    "name": "test-base"
                 }
             ]
         }
