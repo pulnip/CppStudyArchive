@@ -17,10 +17,6 @@ target_compile_options(${PROJECT_NAME} PRIVATE
     -Wall -Wextra
 )
 
-target_link_libraries(${PROJECT_NAME} PRIVATE
-    stdc++exp
-)
-
 if(WIN32)
     target_compile_definitions(${PROJECT_NAME} PRIVATE
         _UNICODE
