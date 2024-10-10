@@ -1,14 +1,14 @@
 #include <exception>
-#include <print>
+#include <iostream>
 
 using namespace std;
 
 int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[]){
     try{
-        println("Hello, World!");
+        puts("Hello, World!");
     }
     catch(const exception& e){
-        println("{}", e.what());
+        printf("%s\n", e.what());
     }
 
     return 0;
