@@ -1,0 +1,40 @@
+name: CI using CMake
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    strategy:
+      fail-fast: false
+
+      matrix:
+        include:
+        - { icon: '🟦', sys: mingw64, build_type: GNUC }
+
+    name: 🚧${{ matrix.icon }} ${{ matrix.build_type }}
+
+    steps:
+    - uses: msys2/setup-msys2@v2
+      with:
+        location: C:/
+        msystem: ${{ matrix.sys }}
+        update: true
+        pacboy:
+          ninja
+          gtest
+
+    - name: Setup MSYS env
+      run: echo C:/msys64/${{matrix.sys}}/bin | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+
+    - name: 🧰 Checkout
+      uses: actions/checkout@v4
+
+    - name: CMake workflow
+      run: cmake --workflow --preset "${{ matrix.build_type }}"

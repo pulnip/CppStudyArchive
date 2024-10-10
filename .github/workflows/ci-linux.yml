@@ -1,0 +1,33 @@
+name: CI using CMake
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+
+      matrix:
+        include:
+          - { icon: '🟦', build_type: GNUC }
+
+    name: 🚧${{ matrix.icon }} ${{ matrix.build_type }}
+
+    steps:
+    - name: Install dependencies
+      run: |
+        sudo apt update
+        sudo apt install -y ninja-build libgtest-dev
+
+    - name: 🧰 Checkout
+      uses: actions/checkout@v4
+
+    - name: CMake workflow
+      run: cmake --workflow --preset "${{ matrix.build_type }}"
