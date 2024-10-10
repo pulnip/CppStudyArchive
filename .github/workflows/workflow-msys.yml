@@ -1,0 +1,27 @@
+name: CI using CMake
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    strategy:
+      fail-fast: false
+
+    steps:
+    - uses: msys2/setup-msys2@v2
+      with:
+        update: true
+        pacboy:
+          cmake.x
+          ninja.x
+          gcc.x
+
+    - name: CMake workflow
+      run: cmake --workflow --preset "MinGW-GNUC"
