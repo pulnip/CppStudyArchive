@@ -19,6 +19,7 @@ jobs:
       with:
         msystem: MINGW64
         pacboy:
+          ninja
           gtest
 
     - name: Checkout Project
