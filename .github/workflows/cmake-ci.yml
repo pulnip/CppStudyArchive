@@ -27,6 +27,7 @@ jobs:
         msystem: ${{ matrix.sys }}
         update: true
         pacboy:
+          opencv
 
     - name: Install dependencies for Linux
       if: matrix.os == 'ubuntu-latest'
