@@ -19,9 +19,9 @@ jobs:
       with:
         update: true
         pacboy:
-          cmake.x
-          ninja.x
-          gcc.x
+          cmake
+          ninja
+          gcc
 
     - name: CMake workflow
       run: cmake --workflow --preset "MinGW-GNUC"
