@@ -35,5 +35,5 @@ jobs:
 
     - name: CMake workflow
       env:
-        MSYS_ROOT: D:\msys64\${{ matrix.sys }}
+        MSYS_ROOT: D:\msys64
       run: cmake --workflow --preset "MinGW-GNUC"
