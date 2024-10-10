@@ -24,6 +24,7 @@
         },
         {
             "name": "x64-base",
+            "hidden": true,
             "inherits": [
                 "x64",
                 "Ninja"
@@ -41,25 +42,32 @@
                 "CMAKE_RUNTIME_OUTPUT_DIRECTORY": "$env{PROJECT_BUILD_ROOT}/bin",
                 "CMAKE_INSTALL_PREFIX": "${sourceDir}/install/${presetName}"
             }
+        },
+        {
+            "name": "GNUC",
+            "inherits": "x64-base",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "gcc",
+                "CMAKE_CXX_COMPILER": "g++"
+            }
         }
     ],
     "buildPresets": [
         {
-            "name": "x64-Debug",
-            "configurePreset": "x64-base",
+            "name": "GNUC-Debug",
+            "configurePreset": "GNUC",
             "configuration": "Debug"
         },
         {
-            "name": "x64-Release",
-            "configurePreset": "x64-base",
+            "name": "GNUC-Release",
+            "configurePreset": "GNUC",
             "configuration": "RelWithDebInfo"
         }
     ],
     "testPresets": [
         {
             "name": "test-base",
-            "configurePreset": "x64-base",
-            "configuration": "RelWithDebInfo",
+            "hidden": true,
             "output": {
                 "outputOnFailure": true
             },
@@ -67,23 +75,29 @@
                 "timeout": 100,
                 "stopOnFailure": true
             }
+        },
+        {
+            "name": "GNUC",
+            "inherits": "test-base",
+            "configurePreset": "GNUC",
+            "configuration": "RelWithDebInfo"
         }
     ],
     "workflowPresets": [
         {
-            "name": "x64-workflow",
+            "name": "GNUC",
             "steps": [
                 {
                     "type": "configure",
-                    "name": "x64-base"
+                    "name": "GNUC"
                 },
                 {
                     "type": "build",
-                    "name": "x64-Release"
+                    "name": "GNUC-Release"
                 },
                 {
                     "type": "test",
-                    "name": "test-base"
+                    "name": "GNUC"
                 }
             ]
         }
