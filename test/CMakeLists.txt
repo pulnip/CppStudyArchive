@@ -15,10 +15,7 @@ find_package(GTest CONFIG REQUIRED)
 if(GTest_FOUND)
     message(STATUS "Using GTest package")
     target_link_libraries(Test PRIVATE
-        GTest::gtest    
         GTest::gtest_main
-        GTest::gmock
-        GTest::gmock_main
     )
 
     include(GoogleTest)
