@@ -16,18 +16,17 @@ jobs:
 
       matrix:
         os: [windows-latest, ubuntu-latest]
-        sys:
-          - mingw64
+        c_compiler: [gcc]
+        include:
+        - os: windows-latest
+          c_compiler: gcc
+          cpp_compiler: g++
 
     steps:
     - name: Install dependencies for Windows
       if: matrix.os == 'windows-latest'
-      uses: msys2/setup-msys2@v2
-      with:
-        msystem: ${{ matrix.sys }}
-        update: true
-        pacboy:
-          opencv
+      run: |
+        C:/msys64/usr/bin/pacman.exe -S lib mingw-w64-x86_64-gtest
 
     - name: Install dependencies for Linux
       if: matrix.os == 'ubuntu-latest'
