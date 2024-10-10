@@ -26,7 +26,7 @@ jobs:
     - name: Install dependencies for Windows
       if: matrix.os == 'windows-latest'
       run: |
-        C:/msys64/usr/bin/pacman.exe -Sy mingw-w64-x86_64-gtest
+        C:/msys64/usr/bin/pacman.exe -S mingw-w64-x86_64-gtest --noconfirm
 
     - name: Install dependencies for Linux
       if: matrix.os == 'ubuntu-latest'
