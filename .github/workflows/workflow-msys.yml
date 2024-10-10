@@ -23,7 +23,7 @@ jobs:
       with:
         msystem: ${{ matrix.sys }}
         cache: true
-        location: D:\
+        location: D:/
         update: true
         pacboy:
           cmake
@@ -35,5 +35,5 @@ jobs:
 
     - name: CMake workflow
       env:
-        MSYS_ROOT: D:\msys64
+        MSYS_ROOT: D:/msys64
       run: cmake --workflow --preset "MinGW-GNUC"
