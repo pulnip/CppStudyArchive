@@ -11,9 +11,11 @@
 #ifdef __cplusplus
 extern "C"{
 #endif
+
 ROOT_FINDER_F0(bisection);
 ROOT_FINDER_F0(secant);
 ROOT_FINDER_F1(newton);
+
 #ifdef __cplusplus
 }
 #endif

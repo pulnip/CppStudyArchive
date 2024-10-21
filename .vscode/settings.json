@@ -90,7 +90,8 @@
         "*.inc": "cpp",
         "root_finding.h": "c",
         "math.h": "c",
-        "*.ipp": "c"
+        "*.ipp": "c",
+        "base.h": "c"
     },
     "print.filepathInDocumentTitle": "No path",
     "print.filepathHeadingForIndividuallyPrintedDocuments": false
