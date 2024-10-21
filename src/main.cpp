@@ -1,32 +1,23 @@
 #include <cmath>
-#include <ctime>
 #include <iostream>
-#include "root_finding.h"
+#include "integral.h"
 
 using namespace std;
 
-double f1(double x){ return (x+4)*x*x - 10; }
-
-double f2(double x){ return x-pow(3, -x); }
-double f2_derived(double x){ return 1+log(3)*pow(3, -x); }
+double f_a(double x){ return exp(2*x)*sin(3*x); }
+double f_b(double x){ return exp(3*x)*sin(2*x); }
+double f_c(double x){ return 2*x*cos(2*x) - (x-2)*(x-2); }
+double f_d(double x){ return 4*x*cos(2*x) - (x-2)*(x-2); }
 
 int main(void){
-#ifdef OPTIMIZATION_TEST
-    const int caserun=1000000000;
-#endif
+    const double TOL=0.00001;
 
-#ifdef OPTIMIZATION_TEST
-    clock_t start=clock();
-    for(volatile int i=0; i<caserun; ++i){
-#endif
-    // bisection(f1, 1, 2, 0.0005, 20);
-    // secant(f1, 1, 2, 0.0005, 20);
-    newton(f2, f2_derived, 0, 1, 0.00000001, 20);
-#ifdef OPTIMIZATION_TEST
-    }
-    clock_t elapsed=clock()-start;
-    printf("{}ms", elapsed);
-#endif
+    printf("s_1^3(f_a)=%lf, s_1^3(f_b)=%lf, s_0^5(f_c)=%lf, s_0^5(f_d)=%lf\n",
+        adaptive_quadrature(f_a, 1, 3, TOL),
+        adaptive_quadrature(f_b, 1, 3, TOL),
+        adaptive_quadrature(f_c, 0, 5, TOL),
+        adaptive_quadrature(f_d, 0, 5, TOL)
+    );
 
     return 0;
 }

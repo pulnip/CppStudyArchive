@@ -1,9 +1,7 @@
 {
     "DEV_SYS_INCLUDE": "${MSYS_ROOT}/mingw64/include",
     "DEV_SYS_BIN": "${MSYS_ROOT}/mingw64/bin",
-    "WORKSPACE_INCLUDE": "${workspaceFolder}/include",
-    "MAIN_PROJECT_BIN": "${workspaceFolder}/generated/build/bin",
-    "CVTEST_BIN": "${workspaceFolder}/generated/cvtest/bin",
+    "MAIN_PROJECT_BIN": "${workspaceFolder}/build/studyna/bin",
     "files.associations": {
         "cctype": "cpp",
         "clocale": "cpp",

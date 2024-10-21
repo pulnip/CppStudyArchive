@@ -1,7 +1,6 @@
 #pragma once 
 
-typedef double(*continuous_function)(double);
-typedef double(*derivative)(double);
+#include "base.h"
 
 #define ROOT_FINDER_F0(x) extern double x(continuous_function f, \
     double p0, double p1, double TOL, int N0)
