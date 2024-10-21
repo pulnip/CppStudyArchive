@@ -33,7 +33,7 @@
                 "Ninja"
             ],
             "environment": {
-                "PROJECT_BUILD_ROOT": "${sourceDir}/generated/build"
+                "PROJECT_BUILD_ROOT": "${sourceDir}/build/studyna"
             },
             "binaryDir": "$env{PROJECT_BUILD_ROOT}",
             "cacheVariables": {
